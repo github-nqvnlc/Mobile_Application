@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".trips.AddTripActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".trips.EditTripActivity">
 
     <EditText
-        android:id="@+id/input_destination"
+        android:id="@+id/inputDestination"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/border_input"
         android:ems="10"
@@ -26,27 +26,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Destination"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_name" />
+        app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Date of Trip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_destination" />
+        app:layout_constraintTop_toBottomOf="@+id/inputDestination" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Require Risks Assessment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonDate" />
@@ -57,16 +57,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
-        android:text="Name of Trip"
+        android:text="Name Trip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/input_name"
+        android:id="@+id/inputName"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/border_input"
         android:ems="10"
@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
         android:hint="Select Date of Trip"
         android:onClick="openDataPicker"
@@ -96,9 +96,7 @@
         android:layout_width="268dp"
         android:layout_height="49dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="3dp"
-        style="@style/CardView.Light"
-
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,24 +105,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <RadioButton
-            android:id="@+id/radioButton_yes"
-            android:layout_width="132dp"
+            android:id="@+id/radioButtonYes"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="Yes" />
 
         <RadioButton
-            android:id="@+id/radioButton_no"
-            android:layout_width="133dp"
+            android:id="@+id/radioButtonNo"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="No" />
     </RadioGroup>
 
     <EditText
-        android:id="@+id/input_des"
+        android:id="@+id/inputDes"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/border_input"
         android:ems="10"
@@ -138,52 +136,67 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
+
     <Button
         android:id="@+id/save_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:text="Save trip"
+        app:layout_constraintEnd_toStartOf="@+id/delete_btn"
+        app:layout_constraintTop_toBottomOf="@+id/inputDes" />
+
+    <Button
+        android:id="@+id/delete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="60dp"
-        android:text="Add trip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_des" />
+        android:layout_marginTop="16dp"
+        android:text="Delete trip"
+        app:layout_constraintEnd_toEndOf="@+id/inputDes"
+        app:layout_constraintTop_toBottomOf="@+id/inputDes" />
+
+    <Button
+        android:id="@+id/expenses_btn"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:text="View all expenses of trip"
+        app:layout_constraintEnd_toEndOf="@+id/inputDes"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/save_btn"
+        app:layout_constraintTop_toBottomOf="@+id/save_btn" />
 
     <TextView
         android:id="@+id/alertName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:text=""
         android:textColor="@color/red"
         android:textSize="10sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/input_name"
-        app:layout_constraintTop_toBottomOf="@+id/input_name" />
+        app:layout_constraintStart_toStartOf="@+id/inputName"
+        app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
     <TextView
         android:id="@+id/alertDestination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:text=""
         android:textColor="@color/red"
         android:textSize="10sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/input_destination"
-        app:layout_constraintTop_toBottomOf="@+id/input_destination" />
+        app:layout_constraintStart_toStartOf="@+id/inputDestination"
+        app:layout_constraintTop_toBottomOf="@+id/inputDestination" />
 
     <TextView
         android:id="@+id/alertDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:text=""
         android:textColor="@color/red"
         android:textSize="10sp"
@@ -195,11 +208,11 @@
         android:id="@+id/alertRequired"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:text=""
         android:textColor="@color/red"
         android:textSize="10sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="@+id/radioGroup"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

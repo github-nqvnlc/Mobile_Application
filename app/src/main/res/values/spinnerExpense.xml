@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="typeExpense" >
+        <item>Food</item>
+        <item>Drink</item>
+        <item>Hotel</item>
+        <item>Shopping</item>
+        <item>Transport</item>
+        <item>Travel</item>
+    </string-array>
+</resources>

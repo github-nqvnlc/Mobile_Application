@@ -1,9 +1,11 @@
-package com.example.mobile_application;
+package com.example.mobile_application.trips;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,21 +13,31 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import com.example.mobile_application.ConnectDB;
+import com.example.mobile_application.MainActivity;
+import com.example.mobile_application.R;
 
 import java.util.Calendar;
 
-public class Add_Trip extends AppCompatActivity {
+public class AddTripActivity extends AppCompatActivity {
     private EditText name_input, destination_input,require_input, des_input;
     private RadioGroup radioGroup;
     private RadioButton btn_yes, btn_no;
     private Button save_btn;
-
+    private TextView alertName, alertDestination, alertDate, alertRequired;
 
     private DatePickerDialog datePickerDialog;
     private Button buttonDate,  date_input;
 
+    private Boolean setValid = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("Add Trip");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip);
         name_input = findViewById(R.id.input_name);
@@ -35,24 +47,55 @@ public class Add_Trip extends AppCompatActivity {
         btn_yes = findViewById(R.id.radioButton_yes);
         btn_no = findViewById(R.id.radioButton_no);
         des_input = findViewById(R.id.input_des);
+        alertName = findViewById(R.id.alertName);
+        alertDestination = findViewById(R.id.alertDestination);
+        alertDate =findViewById(R.id.alertDate);
+        alertRequired = findViewById(R.id.alertRequired);
         save_btn = findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConnectDB myDB = new ConnectDB(Add_Trip.this);
                 String name = name_input.getText().toString().trim();
                 String destination = destination_input.getText().toString().trim();
-                String date = date_input.getText().toString().trim(); // sau khi tao datepicker thi chinh lai
+                String date = date_input.getText().toString().trim();
                 String des = des_input.getText().toString().trim();
                 int idGroup = radioGroup.getCheckedRadioButtonId();
-                RadioButton radioGroup = findViewById(idGroup);
-                String require = radioGroup.getText().toString().trim();
-                myDB.addNewTrip(name,destination,date,require,des);
+                if (idGroup < 0) {
+                    validInput(name, alertName,"Name of trip");
+                    validInput(destination, alertDestination,"Destination");
+                    validInput(date, alertDate, "Date");
+                    alertRequired.setText("You need to fill all required fields Require Risks Assessment!");
+                } else {
+                    RadioButton radioGroup = findViewById(idGroup);
+                    String require = radioGroup.getText().toString().trim();
+                    alertRequired.setText("");
+                if (setValid == false) {
+                    validInput(name, alertName,"Name of trip");
+                    validInput(destination, alertDestination,"Destination");
+                    validInput(date, alertDate, "Date");
+                } else {
+                    Intent intent = new Intent(AddTripActivity.this, MainActivity.class);
+                    ConnectDB myDB = new ConnectDB(AddTripActivity.this);
+                    myDB.addNewTrip(name,destination,date,require,des);
+                    startActivity(intent);
+                }
+                }
             }
         });
         initDatePicker();
         buttonDate = findViewById(R.id.buttonDate);
     }
+
+    private void validInput(String field, TextView alert, String nameField) {
+         if (field.length() == 0) {
+            alert.setText("You need to fill all required fields "+nameField+" !");
+            setValid = false;
+        } else {
+            alert.setText("");
+            setValid = true;
+        }
+    }
+
 
     private void initDatePicker(){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -61,7 +104,6 @@ public class Add_Trip extends AppCompatActivity {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 buttonDate.setText(date);
-                buttonDate.setText(getTodayDate());
             }
         };
 

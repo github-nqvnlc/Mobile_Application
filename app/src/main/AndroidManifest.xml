@@ -14,8 +14,33 @@
         android:theme="@style/Theme.Mobile_Application"
         tools:targetApi="31">
         <activity
-            android:name=".Add_Trip"
-            android:exported="false" />
+            android:name=".expenses.AddExpensivesActivity"
+            android:exported="false"
+            android:parentActivityName=".expenses.ExpensesActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".expenses.ExpensesActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".trips.EditTripActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".trips.AddTripActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
